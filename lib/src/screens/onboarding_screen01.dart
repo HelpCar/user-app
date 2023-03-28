@@ -25,11 +25,8 @@ class OnBoardingScreen01 extends StatelessWidget {
                   height: 60,
                 ),
                 const Text(
-                  "Save time and hassle less with",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  "HelpCar",
+                  "Save time and hassle less with HelpCar",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(

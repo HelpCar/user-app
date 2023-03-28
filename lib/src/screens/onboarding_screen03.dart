@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:helpcar/src/screens/signin_screen.dart';
+import '../routes/app_router.gr.dart';
 
 class OnBoardingScreen03 extends StatelessWidget {
   const OnBoardingScreen03({super.key});
@@ -25,11 +25,8 @@ class OnBoardingScreen03 extends StatelessWidget {
                   height: 60,
                 ),
                 const Text(
-                  "Reliable service: anytime,",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  "anywhere!",
+                  "Reliable service: anytime, anywhere!",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
@@ -37,7 +34,7 @@ class OnBoardingScreen03 extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // context.router.push(const SignInScreen());
+                    context.router.navigate(const SignInDashboardScreen());
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),

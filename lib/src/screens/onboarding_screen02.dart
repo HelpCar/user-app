@@ -24,11 +24,8 @@ class OnBoardingScreen02 extends StatelessWidget {
                   height: 60,
                 ),
                 const Text(
-                  "A trusted assistant to fix your",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                const Text(
-                  "stranded car",
+                  "A trusted assistant to fix your stranded car",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(

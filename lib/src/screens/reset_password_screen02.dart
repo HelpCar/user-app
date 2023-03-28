@@ -1,20 +1,18 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:helpcar/src/constants/colors.dart';
 import '../routes/app_router.gr.dart';
-import 'package:social_login_buttons/social_login_buttons.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({
+class ResetPasswordScreen02 extends StatefulWidget {
+  const ResetPasswordScreen02({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<ResetPasswordScreen02> createState() => _ResetPasswordScreen02State();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _ResetPasswordScreen02State extends State<ResetPasswordScreen02> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
 
@@ -46,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
         body: Container(
           padding: const EdgeInsets.all(25.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const Image(
@@ -56,7 +54,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: 40,
               ),
               const Text(
-                'Login to Your Account',
+                'Create new password',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -72,36 +70,24 @@ class _SignInScreenState extends State<SignInScreen> {
                     TextFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Enter your name';
+                          setState(() {
+                            password = 'null';
+                          });
+                          return ('Please enter your password');
+                        } else if (value.length < 8) {
+                          setState(() {
+                            password = 'null';
+                          });
+                          return 'Password must be at least 8 characters';
                         }
                         return null;
                       },
-                      // onSaved: (value) => setState(() => name = value!),
+                      onSaved: (value) => setState((() => password = value!)),
                       maxLines: 1,
+                      obscureText: true,
                       decoration: InputDecoration(
-                        hintText: 'name',
-                        prefixIcon: const Icon(Icons.person),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 10.0),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
-                      validator: (value) => EmailValidator.validate(value!)
-                          ? null
-                          : "Please enter a valid email",
-                      onSaved: (value) => setState(() {
-                        email = value!;
-                      }),
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                        hintText: 'email',
-                        prefixIcon: const Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.lock),
+                        hintText: 'New Password',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -132,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       obscureText: true,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.lock),
-                        hintText: 'password',
+                        hintText: 'Confirm New Password',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
@@ -141,17 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
-                    ),
-                    // if (password == 'null')
-                    TextButton(
-                        onPressed: () {
-                          context.router
-                              .navigate(const ResetPasswordScreen01());
-                        },
-                        child: const Text('Forgot Password')),
-                    const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     ElevatedButton(
                       onPressed: () {
@@ -174,43 +150,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         shape: const StadiumBorder(),
                       ),
                       child: const Text(
-                        'Sign in',
+                        'Reset',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const Text(
-                      "or",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    SocialLoginButton(
-                      buttonType: SocialLoginButtonType.google,
-                      onPressed: () {},
-                      borderRadius: 50,
-                      height: 45,
-                      width: 260,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text('Don’t have a HelpCar account yet?'),
-                        TextButton(
-                            onPressed: () {
-                              context.router.push(const SignUpScreen());
-                            },
-                            child: const Text('Sign up')),
-                      ],
                     ),
                   ],
                 ),
