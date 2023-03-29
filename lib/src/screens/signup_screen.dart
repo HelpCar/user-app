@@ -189,6 +189,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         //     print("Login Failed: $error");
                         //   });
                         // }
+                        context.router.navigate(const AddVehicleScreen());
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),

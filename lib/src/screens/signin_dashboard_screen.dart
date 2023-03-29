@@ -71,8 +71,7 @@ class SignInDashboardScreen extends StatelessWidget {
                     const Text('Don’t have a HelpCar account yet?'),
                     TextButton(
                         onPressed: () {
-                          // context.router
-                          //     .push(RegisterScreen(title: 'Register'));
+                          context.router.navigate(const SignUpScreen());
                         },
                         child: const Text('Sign up')),
                   ],
