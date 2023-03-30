@@ -1,12 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:helpcar/src/screens/add_vehicle_screen.dart';
+import 'package:helpcar/src/screens/bottomTab/home_base.dart';
 import 'package:helpcar/src/screens/home_screen.dart';
+import 'package:helpcar/src/screens/my_vehicles_screen01.dart';
 import 'package:helpcar/src/screens/onboarding_screen01.dart';
 import 'package:helpcar/src/screens/onboarding_screen02.dart';
 import 'package:helpcar/src/screens/onboarding_screen03.dart';
+import 'package:helpcar/src/screens/profile_screen01.dart';
 import 'package:helpcar/src/screens/reset_password_screen01.dart';
 import 'package:helpcar/src/screens/reset_password_screen02.dart';
 import 'package:helpcar/src/screens/scroll_dot_view_screen.dart';
+import 'package:helpcar/src/screens/services_screen01.dart';
 import 'package:helpcar/src/screens/signin_dashboard_screen.dart';
 import 'package:helpcar/src/screens/signup_screen.dart';
 import 'package:helpcar/src/screens/splash_screen.dart';
@@ -27,7 +31,6 @@ import 'package:helpcar/src/screens/signin_screen.dart';
     CustomRoute(
       page: WelcomeScreen,
       path: '/welcome-screen',
-      // initial: true,
       transitionsBuilder: TransitionsBuilders.slideLeft,
       guards: [],
     ),
@@ -95,19 +98,46 @@ import 'package:helpcar/src/screens/signin_screen.dart';
     ),
     CustomRoute(
       page: AddVehicleScreen,
-      initial: true,
       path: '/add-vehicle-screen',
       transitionsBuilder: TransitionsBuilders.fadeIn,
       maintainState: true,
       guards: [],
     ),
     CustomRoute(
-      page: HomeScreen,
-      path: '/home-screen',
-      transitionsBuilder: TransitionsBuilders.fadeIn,
-      maintainState: true,
-      guards: [],
-    ),
+        page: HomeBase,
+        path: '/home-base',
+        initial: true,
+        transitionsBuilder: TransitionsBuilders.fadeIn,
+        maintainState: true,
+        guards: [],
+        children: [
+          CustomRoute(
+            page: HomeScreen,
+            path: 'home',
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            initial: true,
+            maintainState: true,
+          ),
+          CustomRoute(
+            page: MyVehicleScreen01,
+            initial: true,
+            path: 'my-vehicle-screen-01',
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            maintainState: true,
+          ),
+          CustomRoute(
+            page: ServicesScreen01,
+            path: 'services-screen-01',
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            maintainState: true,
+          ),
+          CustomRoute(
+            page: ProfileScrren01,
+            path: 'profile-screen-01',
+            transitionsBuilder: TransitionsBuilders.fadeIn,
+            maintainState: true,
+          ),
+        ])
   ],
 )
 class $AppRouter {}

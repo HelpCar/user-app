@@ -168,6 +168,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         //     print("Login Failed: $error");
                         //   });
                         // }
+                        context.router.replace(const HomeBase());
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
