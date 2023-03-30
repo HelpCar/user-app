@@ -329,7 +329,7 @@ class AddVehicleScreenState extends State<AddVehicleScreen> {
                   //     print("Login Failed: $error");
                   //   });
                   // }
-                  context.router.navigate(const HomeBase());
+                  context.router.replace(const HomeBase());
                 },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),

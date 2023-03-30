@@ -49,7 +49,7 @@ class _HomeBaseState extends State<HomeBase> {
                       Icons.car_crash_rounded,
                       size: 25,
                     ),
-                    label: 'QR Code',
+                    label: 'My Vehicles',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(
@@ -60,7 +60,7 @@ class _HomeBaseState extends State<HomeBase> {
                       Icons.miscellaneous_services_rounded,
                       size: 25,
                     ),
-                    label: 'Records',
+                    label: 'Services',
                   ),
                   BottomNavigationBarItem(
                     icon: Icon(

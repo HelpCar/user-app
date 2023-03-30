@@ -25,8 +25,8 @@ class HomeBaseController extends GetxController {
         bottomNavBarSelectedItem.value = 3;
         break;
       default:
-        AutoRouter.of(context).replace(const ProfileScrren01());
-        bottomNavBarSelectedItem.value = 1;
+        AutoRouter.of(context).replace(const HomeScreen());
+        bottomNavBarSelectedItem.value = 0;
     }
   }
 }
