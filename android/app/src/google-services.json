@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "531641985119",
+    "project_id": "help-car-4710e",
+    "storage_bucket": "help-car-4710e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531641985119:android:31d216d2b13dd9df51d3ea",
+        "android_client_info": {
+          "package_name": "com.example.helpcar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531641985119-ckidulh75rhb906ha9v2qgocqgn2lccb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5txxPlgv3hcWnctx6PGjSJ4dVEDslTfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531641985119-ckidulh75rhb906ha9v2qgocqgn2lccb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -15,15 +15,16 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
                 width: 280,
-                height: 80,
+                height: 70,
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
                 child: Row(
                   children: [
                     const CircleAvatar(
@@ -52,24 +53,37 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  children: const [
+                    Image(
+                        image: AssetImage('lib/assets/images/Coin.png'),
+                        fit: BoxFit.cover),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      '100',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                      ),
+                    ),
+                  ],
+                ),
               )
-
-              // Container(
-              //   padding: const EdgeInsets.all(10),
-              //   decoration: BoxDecoration(
-              //     color: defaultColorScheme.background,
-              //     borderRadius: BorderRadius.circular(10),
-              //     border: Border.all(width: 1, color: Colors.grey),
-              //   ),
-              //   child: const Text('dcadc'),
-              // )
             ],
+          ),
+          const SizedBox(
+            height: 20,
           ),
           const Image(
               image: AssetImage('lib/assets/images/logo.png'),
               fit: BoxFit.cover),
           const SizedBox(
-            height: 40,
+            height: 20,
           ),
           const Text(
             'Are you in a trouble?',
@@ -125,6 +139,45 @@ class HomeScreen extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 17,
             ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Container(
+            width: 200,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.grey[200],
+              borderRadius: BorderRadius.circular(20),
+            ),
+            padding: const EdgeInsets.fromLTRB(0, 16, 16, 16),
+            // child: Row(
+            //   children: [
+            //     const CircleAvatar(
+            //       backgroundImage: NetworkImage('https://picsum.photos/200'),
+            //       radius: 50,
+            //     ),
+            //     Column(
+            //       children: const [
+            //         Text(
+            //           'John Doe',
+            //           style: TextStyle(
+            //             fontSize: 15,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //         Spacer(),
+            //         Text(
+            //           'johndoe@example.com',
+            //           style: TextStyle(
+            //             fontSize: 12,
+            //             color: Colors.grey,
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   ],
+            // ),
           ),
         ],
       ),
