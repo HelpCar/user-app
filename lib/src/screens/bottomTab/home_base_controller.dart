@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:helpcar/src/routes/app_router.gr.dart';
 
 class HomeBaseController extends GetxController {
-  RxInt bottomNavBarSelectedItem = RxInt(1);
+  RxInt bottomNavBarSelectedItem = RxInt(0);
 
   onNavigation(BuildContext context, int index) {
     switch (index) {

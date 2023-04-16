@@ -1,10 +1,36 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:helpcar/src/controllers/user_controller.dart';
+import 'package:helpcar/src/services/auth_service.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 import '../routes/app_router.gr.dart';
 
-class SignInDashboardScreen extends StatelessWidget {
+class SignInDashboardScreen extends StatefulWidget {
   const SignInDashboardScreen({super.key});
+
+  @override
+  State<SignInDashboardScreen> createState() => _SignInDashboardScreenState();
+}
+
+class _SignInDashboardScreenState extends State<SignInDashboardScreen> {
+  bool _isLoggedIn = false;
+  User? _user;
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkUserLoggedIn();
+  }
+
+  void _checkUserLoggedIn() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _user = currentUser;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +59,22 @@ class SignInDashboardScreen extends StatelessWidget {
                 ),
                 SocialLoginButton(
                   buttonType: SocialLoginButtonType.google,
-                  onPressed: () {},
+                  onPressed: () {
+                    UserController().signInWithGoogle();
+                    auth.authStateChanges().listen((User? user) {
+                      if (user == null) {
+                        // User is signed out
+                      } else {
+                        const massage = 'you are Logged in!';
+                        SnackBar snackBar = const SnackBar(
+                          content: Text(massage),
+                          duration: Duration(seconds: 3),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        context.router.replace(const HomeBase());
+                      }
+                    });
+                  },
                   borderRadius: 50,
                   height: 52,
                 ),

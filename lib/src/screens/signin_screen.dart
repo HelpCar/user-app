@@ -1,7 +1,12 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:helpcar/src/constants/colors.dart';
+import 'package:helpcar/src/controllers/user_controller.dart';
+import 'package:helpcar/src/services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../routes/app_router.gr.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
@@ -18,6 +23,7 @@ class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
 
+  String name = '';
   String email = '';
   String password = '';
   bool _isLoggedIn = false;
@@ -26,6 +32,8 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -155,20 +163,34 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     ElevatedButton(
                       onPressed: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState?.save();
-                        //   final message = 'Welcome $email!';
-                        //   FirebaseAuth.instance
-                        //       .signInWithEmailAndPassword(
-                        //           email: email, password: password)
-                        //       .then((value) {
-                        //     print('Logged In!');
-                        //     context.router.push(const LandingScreen());
-                        //   }).onError((error, stackTrace) {
-                        //     print("Login Failed: $error");
-                        //   });
-                        // }
-                        context.router.replace(const HomeBase());
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState?.save();
+                          FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: email, password: password)
+                              .then((value) async {
+                            setState(() {
+                              _isLoggedIn = true;
+                            });
+                            final prefs = await SharedPreferences.getInstance();
+                            prefs.setBool('isLoggedIn', _isLoggedIn);
+                            if (kDebugMode) {
+                              print('You are Logged In!');
+                              print(_isLoggedIn);
+                            }
+                            context.router.replace(const HomeBase());
+                          }).onError((error, stackTrace) {
+                            if (kDebugMode) {
+                              print("Login Failed: $error");
+                            }
+                          });
+                          final massage = 'Logged in as $email!';
+                          final SnackBar snackBar = SnackBar(
+                            content: Text(massage),
+                            duration: const Duration(seconds: 3),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
@@ -194,7 +216,23 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                     SocialLoginButton(
                       buttonType: SocialLoginButtonType.google,
-                      onPressed: () {},
+                      onPressed: () {
+                        UserController().signInWithGoogle();
+                        auth.authStateChanges().listen((User? user) {
+                          if (user == null) {
+                            // User is signed out
+                          } else {
+                            const massage = 'you are Logged in!';
+                            SnackBar snackBar = const SnackBar(
+                              content: Text(massage),
+                              duration: Duration(seconds: 3),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                            context.router.replace(const HomeBase());
+                          }
+                        });
+                      },
                       borderRadius: 50,
                       height: 45,
                       width: 260,
