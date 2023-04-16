@@ -25,11 +25,12 @@ import 'package:helpcar/src/screens/signin_screen.dart';
   routes: <AutoRoute>[
     CustomRoute(
       page: SplashScreen,
-      path: 'splash-screen',
+      path: '/splash-screen',
       transitionsBuilder: TransitionsBuilders.slideLeft,
     ),
     CustomRoute(
       page: WelcomeScreen,
+      initial: true,
       path: '/welcome-screen',
       transitionsBuilder: TransitionsBuilders.slideLeft,
       guards: [],
@@ -106,7 +107,7 @@ import 'package:helpcar/src/screens/signin_screen.dart';
     CustomRoute(
         page: HomeBase,
         path: '/home-base',
-        initial: true,
+        // initial: true,
         transitionsBuilder: TransitionsBuilders.fadeIn,
         maintainState: true,
         guards: [],
@@ -120,7 +121,6 @@ import 'package:helpcar/src/screens/signin_screen.dart';
           ),
           CustomRoute(
             page: MyVehicleScreen01,
-            initial: true,
             path: 'my-vehicle-screen-01',
             transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
@@ -137,7 +137,7 @@ import 'package:helpcar/src/screens/signin_screen.dart';
             transitionsBuilder: TransitionsBuilders.fadeIn,
             maintainState: true,
           ),
-        ])
+        ]),
   ],
 )
 class $AppRouter {}

@@ -199,12 +199,12 @@ class AppRouter extends _i18.RootStackRouter {
         _i18.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: '/home-base',
+          redirectTo: '/welcome-screen',
           fullMatch: true,
         ),
         _i18.RouteConfig(
           SplashScreen.name,
-          path: 'splash-screen',
+          path: '/splash-screen',
         ),
         _i18.RouteConfig(
           WelcomeScreen.name,
@@ -292,7 +292,7 @@ class SplashScreen extends _i18.PageRouteInfo<void> {
   const SplashScreen()
       : super(
           SplashScreen.name,
-          path: 'splash-screen',
+          path: '/splash-screen',
         );
 
   static const String name = 'SplashScreen';

@@ -1,4 +1,7 @@
+import 'package:blurry/blurry.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:helpcar/src/constants/colors.dart';
@@ -94,28 +97,51 @@ class _ResetPasswordScreen01State extends State<ResetPasswordScreen01> {
                             const EdgeInsets.symmetric(vertical: 10.0),
                       ),
                     ),
-
                     const SizedBox(
                       height: 20,
                     ),
-                    // if (password == 'null')
-
                     ElevatedButton(
                       onPressed: () {
-                        // if (_formKey.currentState!.validate()) {
-                        //   _formKey.currentState?.save();
-                        //   final message = 'Welcome $email!';
-                        //   FirebaseAuth.instance
-                        //       .signInWithEmailAndPassword(
-                        //           email: email, password: password)
-                        //       .then((value) {
-                        //     print('Logged In!');
-                        //     context.router.push(const LandingScreen());
-                        //   }).onError((error, stackTrace) {
-                        //     print("Login Failed: $error");
-                        //   });
-                        // }
-                        context.router.navigate(const ResetPasswordScreen02());
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState?.save();
+                          FirebaseAuth.instance
+                              .sendPasswordResetEmail(email: email)
+                              .then((value) {
+                            if (kDebugMode) {
+                              print('Request Sent!');
+                            }
+                            Blurry(
+                                    icon: Icons.verified_user,
+                                    themeColor:
+                                        const Color.fromARGB(255, 19, 126, 109),
+                                    title: 'Request Success!',
+                                    description:
+                                        'Please check your email to continue',
+                                    // cancelButtonText: 'Ok',
+                                    // onCancelButtonPressed: () {
+                                    //   context.router
+                                    //       .push(LoginScreen(title: 'login'));
+                                    // },
+                                    confirmButtonText: 'Ok',
+                                    onConfirmButtonPressed: () {
+                                      // context.router
+                                      //     .push(LoginScreen(title: 'login'));
+                                    })
+                                .show(context);
+                            // context.router
+                            //     .navigate(const ResetPasswordScreen02());
+                          }).onError((error, stackTrace) {
+                            print("Request Failed: $error");
+                            const massage =
+                                'Something Went Wrong! Please try again';
+                            SnackBar snackBar = const SnackBar(
+                              content: Text(massage),
+                              duration: Duration(seconds: 5),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          });
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
