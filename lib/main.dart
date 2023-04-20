@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:helpcar/src/controllers/profile_controller.dart';
 import 'package:helpcar/src/controllers/user_controller.dart';
 import 'package:helpcar/src/routes/app_router.gr.dart';
 import 'package:helpcar/src/constants/colors.dart';
@@ -9,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Get.put(UserController());
+  Get.put(ProfileController());
   runApp(MyApp());
 }
 

@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:helpcar/src/screens/add_vehicle_screen.dart';
 import 'package:helpcar/src/screens/bottomTab/home_base.dart';
+import 'package:helpcar/src/screens/confirm_service_screen.dart';
+import 'package:helpcar/src/screens/edit_profile_screen.dart';
+import 'package:helpcar/src/screens/getLocation_screen.dart';
 import 'package:helpcar/src/screens/home_screen.dart';
 import 'package:helpcar/src/screens/my_vehicles_screen01.dart';
 import 'package:helpcar/src/screens/onboarding_screen01.dart';
@@ -30,7 +33,7 @@ import 'package:helpcar/src/screens/signin_screen.dart';
     ),
     CustomRoute(
       page: WelcomeScreen,
-      initial: true,
+      // initial: true,
       path: '/welcome-screen',
       transitionsBuilder: TransitionsBuilders.slideLeft,
       guards: [],
@@ -105,9 +108,30 @@ import 'package:helpcar/src/screens/signin_screen.dart';
       guards: [],
     ),
     CustomRoute(
+      page: EditProfileScreen,
+      path: '/edit-profile-screen',
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      maintainState: true,
+      guards: [],
+    ),
+    CustomRoute(
+      page: ConfirmServiceScreen,
+      path: '/confirm-service-screen',
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      maintainState: true,
+      guards: [],
+    ),
+    CustomRoute(
+      page: GetLocationScreen,
+      path: '/get-location-screen',
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+      maintainState: true,
+      guards: [],
+    ),
+    CustomRoute(
         page: HomeBase,
         path: '/home-base',
-        // initial: true,
+        initial: true,
         transitionsBuilder: TransitionsBuilders.fadeIn,
         maintainState: true,
         guards: [],
@@ -116,7 +140,7 @@ import 'package:helpcar/src/screens/signin_screen.dart';
             page: HomeScreen,
             path: 'home',
             transitionsBuilder: TransitionsBuilders.fadeIn,
-            initial: true,
+            // initial: true,
             maintainState: true,
           ),
           CustomRoute(

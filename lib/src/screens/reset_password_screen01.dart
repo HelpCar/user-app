@@ -111,27 +111,25 @@ class _ResetPasswordScreen01State extends State<ResetPasswordScreen01> {
                               print('Request Sent!');
                             }
                             Blurry(
-                                    icon: Icons.verified_user,
-                                    themeColor:
-                                        const Color.fromARGB(255, 19, 126, 109),
-                                    title: 'Request Success!',
-                                    description:
-                                        'Please check your email to continue',
-                                    // cancelButtonText: 'Ok',
-                                    // onCancelButtonPressed: () {
-                                    //   context.router
-                                    //       .push(LoginScreen(title: 'login'));
-                                    // },
-                                    confirmButtonText: 'Ok',
-                                    onConfirmButtonPressed: () {
-                                      // context.router
-                                      //     .push(LoginScreen(title: 'login'));
-                                    })
-                                .show(context);
-                            // context.router
-                            //     .navigate(const ResetPasswordScreen02());
+                                icon: Icons.verified_user,
+                                themeColor:
+                                    const Color.fromARGB(255, 19, 126, 109),
+                                title: 'Request Success!',
+                                description:
+                                    'Please check your email to continue',
+                                cancelButtonText: '',
+                                // onCancelButtonPressed: () {
+                                //   context.router
+                                //       .push(LoginScreen(title: 'login'));
+                                // },
+                                confirmButtonText: 'Ok',
+                                onConfirmButtonPressed: () {
+                                  context.router.push(const SignInScreen());
+                                }).show(context);
                           }).onError((error, stackTrace) {
-                            print("Request Failed: $error");
+                            if (kDebugMode) {
+                              print("Request Failed: $error");
+                            }
                             const massage =
                                 'Something Went Wrong! Please try again';
                             SnackBar snackBar = const SnackBar(
