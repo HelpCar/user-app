@@ -1,6 +1,5 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:helpcar/models/user_model.dart';
@@ -27,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String userName = '';
   String email = '';
   String password = '';
+  String confirmPassword = '';
   bool _isLoggedIn = false;
   Map _userObj = {};
 
@@ -83,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         }
                         return null;
                       },
-                      // onSaved: (value) => setState(() => name = value!),
+                      onSaved: (value) => setState(() => userName = value!),
                       maxLines: 1,
                       decoration: InputDecoration(
                         hintText: 'name',
@@ -125,13 +125,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           setState(() {
                             password = 'null';
                           });
-                          return ('Please enter your password');
+                          return 'Please enter your password';
                         } else if (value.length < 8) {
                           setState(() {
                             password = 'null';
                           });
                           return 'Password must be at least 8 characters';
                         }
+                        setState(() {
+                          password = value;
+                        });
                         return null;
                       },
                       onSaved: (value) => setState((() => password = value!)),
@@ -154,18 +157,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           setState(() {
-                            password = 'null';
+                            confirmPassword = 'null';
                           });
-                          return ('Please enter your password');
-                        } else if (value.length < 8) {
+                          return 'Please confirm your password';
+                        } else if (value != password) {
                           setState(() {
-                            password = 'null';
+                            confirmPassword = 'null';
                           });
-                          return 'Password must be at least 8 characters';
+                          return 'Passwords do not match';
                         }
+                        setState(() {
+                          confirmPassword = value;
+                        });
                         return null;
                       },
-                      onSaved: (value) => setState((() => password = value!)),
+                      onSaved: (value) =>
+                          setState((() => confirmPassword = value!)),
                       maxLines: 1,
                       obscureText: true,
                       decoration: InputDecoration(
@@ -236,7 +243,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             );
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
-                            context.router.replace(const HomeBase());
+                            context.router.replace(const AddVehicleScreen());
                           }
                         });
                       },

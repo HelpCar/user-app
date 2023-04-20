@@ -34,7 +34,7 @@ class OnBoardingScreen01 extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    // context.router.push(const OnBoardingScreen02());
+                    // context.router.replace(const OnBoardingScreen02());
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),

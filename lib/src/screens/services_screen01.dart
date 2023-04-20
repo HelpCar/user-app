@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:helpcar/src/routes/app_router.gr.dart';
 import 'package:helpcar/src/widgets/custom_app_bar.dart';
 import 'package:helpcar/src/widgets/custom_button_large.dart';
 
@@ -43,7 +45,9 @@ class _ServicesScreen01State extends State<ServicesScreen01> {
               children: [
                 TextIconButton(
                   text: 'Select a nearby service provider',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.router.navigate(const ConfirmServiceScreen());
+                  },
                 ),
                 const SizedBox(
                   height: 40,

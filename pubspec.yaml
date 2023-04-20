@@ -41,6 +41,15 @@ dependencies:
   firebase_auth: ^4.4.1
   shared_preferences: ^2.1.0
   blurry: ^1.4.2
+  image_cropper: ^3.0.2
+  image_picker: ^0.8.7+3
+  geolocator: ^9.0.2
+  google_maps_flutter: ^2.2.1
+  permission_handler: ^10.2.0
+  lottie: ^1.4.3
+  flutter_svg: ^1.1.0
+  flutter_polyline_points: ^1.0.0
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:
